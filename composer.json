@@ -1,0 +1,16 @@
+{
+    "name": "lexxkrt/table-page",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Lexxkrt\\TablePage\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "lexxkrt",
+            "email": "lexxkrt@gmail.com"
+        }
+    ],
+    "require": {}
+}
