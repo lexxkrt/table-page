@@ -3,7 +3,6 @@
 namespace Lexxkrt\TablePage\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Lexxkrt\TablePage\Console\Commands\MakePage;
 
 class TablePageServiceProvider extends ServiceProvider
 {
@@ -20,7 +19,7 @@ class TablePageServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->commands([MakePage::class]);
+        $this->commands([\Lexxkrt\TablePage\Console\Commands\MakePage::class]);
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'table-page');
     }
 }
