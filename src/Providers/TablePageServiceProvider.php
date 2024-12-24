@@ -1,9 +1,9 @@
 <?php
 
-namespace Modules\TablePage\Providers;
+namespace Lexxkrt\TablePage\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\TablePage\Console\Commands\MakePage;
+use Lexxkrt\TablePage\Console\Commands\MakePage;
 
 class TablePageServiceProvider extends ServiceProvider
 {

@@ -5,15 +5,15 @@ use App\Models\Brand;
 use App\Models\{{model}};
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Computed;
-use Modules\TablePage\Classes\BaseTable;
-use Modules\TablePage\Classes\Actions\ActionEdit;
-use Modules\TablePage\Classes\Columns\ColumnText;
-use Modules\TablePage\Classes\Columns\ColumnImage;
-use Modules\TablePage\Classes\Columns\ColumnMoney;
-use Modules\TablePage\Classes\Actions\ActionDelete;
-use Modules\TablePage\Classes\Columns\ColumnToggle;
-use Modules\TablePage\Classes\Filters\FilterSelect;
-use Modules\TablePage\Classes\Filters\FilterStatus;
+use Lexxkrt\TablePage\Classes\BaseTable;
+use Lexxkrt\TablePage\Classes\Actions\ActionEdit;
+use Lexxkrt\TablePage\Classes\Columns\ColumnText;
+use Lexxkrt\TablePage\Classes\Columns\ColumnImage;
+use Lexxkrt\TablePage\Classes\Columns\ColumnMoney;
+use Lexxkrt\TablePage\Classes\Actions\ActionDelete;
+use Lexxkrt\TablePage\Classes\Columns\ColumnToggle;
+use Lexxkrt\TablePage\Classes\Filters\FilterSelect;
+use Lexxkrt\TablePage\Classes\Filters\FilterStatus;
 
 class {{model}}Page extends BaseTable
 {

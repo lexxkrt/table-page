@@ -6,6 +6,16 @@
             "Lexxkrt\\TablePage\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Lexxkrt\\TablePage\\Providers\\TablePageServiceProvider"
+            ],
+            "aliases": {
+                "TablePage": "Lexxkrt\\TablePage\\Facades\\TablePage"
+            }
+        }
+        },
     "authors": [
         {
             "name": "lexxkrt",

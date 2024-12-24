@@ -1,5 +1,5 @@
 <?php
-namespace Modules\TablePage\Console\Commands;
+namespace Lexxkrt\TablePage\Console\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
