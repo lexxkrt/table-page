@@ -1,6 +1,6 @@
 @props(['field'])
 @php
-    $image = $this->imageUrl();
+    // $image = $this->imageUrl($field->name);
     $placeholder = $field->placeholder ?? asset('images/no_img.jpg');
     $span = match ($field->span) {
         1 => 'col-span-1',
@@ -15,7 +15,7 @@
 <div class="{{ $span }} dark:bg-slate-700 dark:border-slate-500 flex flex-col border border-slate-400 bg-slate-100">
     <div class="relative flex max-h-48 w-full rounded p-2">
         <div class="flex w-full justify-center">
-            <img src="{{ $image ?? $placeholder }}" alt="">
+            <img src="{{ $this->imageUrl($field->name) ?? $placeholder }}" alt="">
         </div>
         <span
               x-on:click="$wire.set('form.image','');$wire.set('form.upload',null);document.getElementsByName('{{ $field->name }}')[0].value = ''"
@@ -29,7 +29,7 @@
     </div>
     <div class="mb-3 flex flex-col items-center px-3 py-2 text-center">
         <label class="mr-0 inline-flex cursor-pointer rounded-md bg-blue-500 px-3 py-2 text-white hover:bg-blue-600" for="{{ $field->name }}">{{ __('Select image') }}</label>
-        <input {{ $attributes }} wire:model="uploads['{{ $field->key }}']" class="hidden cursor-pointer border-none" type="file" name="{{ $field->name }}" id="{{ $field->name }}">
+        <input {{ $attributes }} wire:model="uploads.{{ $field->name }}" class="hidden cursor-pointer border-none" type="file" name="{{ $field->name }}" id="{{ $field->name }}">
         @error($field->key)
             <span class="text-red-500">{{ $message }}</span>
         @enderror

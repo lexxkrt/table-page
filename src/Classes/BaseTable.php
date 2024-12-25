@@ -5,6 +5,7 @@ use Livewire\Component;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use Livewire\Attributes\Computed;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,7 @@ use Lexxkrt\TablePage\Classes\Actions\ActionDelete;
 abstract class BaseTable extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     protected string $class;
     public ?Model $model = null;
     public $formShow = false;
@@ -30,7 +32,7 @@ abstract class BaseTable extends Component
 
     public string $search = "";
     public array $filter = [];
-    public $uploads = [];
+    public array $uploads = [];
 
     abstract public function columns(): array;
     abstract public function fields(): array;
@@ -126,6 +128,7 @@ abstract class BaseTable extends Component
         $this->form_data = [];
         $this->formShow = true;
     }
+
     public function edit($id)
     {
         $this->model = $this->query()->find($id);
@@ -187,15 +190,19 @@ abstract class BaseTable extends Component
             Arr::where($fields, fn($field) => $field instanceof FieldImage),
             fn($field) => [$field->key => $field->name]
         );
-        // dd($fields, $rules, $attributes, $names, $images);
 
         $this->validate($rules, attributes: $attributes);
 
         $form_data = Arr::only($this->form_data, $names);
+        $tables = app($this->class)->getTable();
+
+        foreach ($images as $image) {
+            if (array_key_exists($image, $this->uploads)) {
+                $form_data[$image] = $this->uploads[$image]->store($tables, 'public');
+            }
+        }
 
         if ($this->model->exists) {
-            if (empty($form_data['image']))
-                unset($form_data['image']);
             $this->model->update($form_data);
         } else {
             $this->model->create($form_data);
@@ -220,10 +227,10 @@ abstract class BaseTable extends Component
         $this->formShow = false;
     }
 
-    public function imageUrl()
+    public function imageUrl($name)
     {
         if ($this->uploads) {
-            return $this->uploads[0]->temporaryUrl();
+            return $this->uploads[$name]->temporaryUrl();
         } else {
             if ($this->model->image ?? false)
                 return $this->model->image;
