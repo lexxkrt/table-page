@@ -23,3 +23,14 @@
         <span class="text-red-500">{{ $message }}</span>
     @enderror
 </div>
+
+<script src="https://cdn.ckeditor.com/4.25.0/full/ckeditor.js"></script>
+
+<script>
+    document.addEventListener('livewire:init', function () {
+            CKEDITOR.replace('{{ $field->name }}');
+            Livewire.on('contentChanged', () => {
+                CKEDITOR.instances.editor.updateElement();
+            });
+        });
+</script>
